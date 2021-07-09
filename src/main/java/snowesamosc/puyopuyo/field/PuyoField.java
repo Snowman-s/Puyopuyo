@@ -1,8 +1,11 @@
-package snowesamosc.puyopuyo;
+package snowesamosc.puyopuyo.field;
+
+import snowesamosc.puyopuyo.Puyo;
 
 public class PuyoField {
     //grid[x][y]の様に指定。
     private final Puyo[][] grid;
+    private FieldRenderer renderer = new FieldRenderer(this);
 
     public static PuyoField create(int width, int height) {
         if (width <= 0 || height <= 0) throw new IllegalArgumentException();
@@ -38,6 +41,10 @@ public class PuyoField {
         validCheck(x, y);
 
         return grid[x][y];
+    }
+
+    public FieldRenderer getRenderer() {
+        return renderer;
     }
 
     @Override
