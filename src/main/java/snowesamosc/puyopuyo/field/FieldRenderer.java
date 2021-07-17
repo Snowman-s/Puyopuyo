@@ -22,6 +22,7 @@ public class FieldRenderer implements PRenderer {
         graphics.stroke(255);
         graphics.fill(0, 50);
 
+        //grids
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 graphics.rect(
@@ -29,6 +30,16 @@ public class FieldRenderer implements PRenderer {
                         oneGridSize, oneGridSize);
             }
         }
+
+        //puyo
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                graphics.image(puyoField.getPuyoImage(x, y),
+                        this.x + oneGridSize * x, this.y + oneGridSize * y,
+                        oneGridSize, oneGridSize);
+            }
+        }
+
 
         graphics.popStyle();
     }
