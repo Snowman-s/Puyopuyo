@@ -77,6 +77,10 @@ public class PuyoField {
         return validCheckBoolean(x, y) && puyo.isConnect(grid[x][y]);
     }
 
+    public boolean isIntrusionPossible(int x, int y) {
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

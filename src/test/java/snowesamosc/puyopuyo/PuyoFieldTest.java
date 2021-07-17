@@ -46,4 +46,23 @@ class PuyoFieldTest {
 
         assertThrows(IllegalArgumentException.class, () -> puyoField.putPuyo(0, 12, new Puyo(new PuyoImage(Collections.emptyList()), puyoType), true));
     }
+
+    @Test
+    void intrusionTest() {
+        PuyoField puyoField = PuyoField.create(6, 12);
+
+        PuyoType puyoType = new PuyoType() {
+            @Override
+            public boolean isConnect(Puyo puyo) {
+                return false;
+            }
+        };
+
+        puyoField.putPuyo(0, 0, new Puyo(new PuyoImage(Collections.emptyList()), puyoType), false);
+
+        assertFalse(puyoField.isIntrusionPossible(0, 0));
+        assertTrue(puyoField.isIntrusionPossible(5, 7));
+        assertFalse(puyoField.isIntrusionPossible(6,0));
+        assertFalse(puyoField.isIntrusionPossible(0,12));
+    }
 }
