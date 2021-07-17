@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'idea'
 }
 
 group 'org.example'
@@ -18,3 +19,18 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    main {
+        output.resourcesDir = java.outputDir
+    }
+    test{
+        output.resourcesDir = java.outputDir
+    }
+}
+
+idea.module.outputDir file("out/production/classes")

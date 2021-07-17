@@ -5,12 +5,21 @@ import snowesamosc.puyopuyo.field.FieldRenderer;
 import snowesamosc.puyopuyo.field.PuyoField;
 
 public class MainSketch extends PApplet {
+    private PuyoFactory puyoFactory = new PuyoFactory();
+
     private PuyoField field1 = PuyoField.create(6, 12);
     private PuyoField field2 = PuyoField.create(6, 12);
 
     @Override
     public void settings() {
         size(1000, 600);
+    }
+
+    @Override
+    public void setup() {
+        {
+            puyoFactory.loadImages(this);
+        }
 
         {
             FieldRenderer renderer = field1.getRenderer();
@@ -27,6 +36,11 @@ public class MainSketch extends PApplet {
             renderer.setY(0);
             renderer.setOneGridSize(50);
         }
+
+        field1.putPuyo(0, 0, puyoFactory.createPuyo(PuyoFactory.FactoryPuyoType.RED), true);
+        field1.putPuyo(0, 1, puyoFactory.createPuyo(PuyoFactory.FactoryPuyoType.RED), true);
+        field1.putPuyo(1, 0, puyoFactory.createPuyo(PuyoFactory.FactoryPuyoType.RED), true);
+        field1.putPuyo(0, 3, puyoFactory.createPuyo(PuyoFactory.FactoryPuyoType.RED), true);
     }
 
     @Override
